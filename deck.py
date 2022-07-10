@@ -4,5 +4,3 @@ class deckclass():
         self.y = y
         self.inputdata = data
         self.data = ""
-        self.FormatSorter()
-    
