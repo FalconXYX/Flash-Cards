@@ -1,8 +1,6 @@
 
 import random
 
-from tkinter.messagebox import QUESTION
-
 class cardclass():
     def __init__(self,x,y,l,w,color,formattype,data,guivariable):
         self.x= x
