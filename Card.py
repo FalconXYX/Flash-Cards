@@ -1,5 +1,7 @@
 
-import random
+import os,random,string
+from pathlib import Path
+import json
 
 class cardclass():
     def __init__(self,x,y,l,w,color,formattype,data,guivariable):
@@ -11,6 +13,17 @@ class cardclass():
         self.formatType = formattype
         self.inputdata = data
         self.data = ""
+        self.FormatSorter()
+    def __init__(self,x,y,l,w,color,formattype,data,guivariable,deckname):
+        self.x= x
+        self.y = y
+        self.l = l
+        self.w = w
+        self.color = color
+        self.formatType = formattype
+        self.inputdata = data
+        self.data = ""
+        self.name = deckname
         self.FormatSorter()
     def FormatSorter(self):
         if(self.formatType == 0): self.blanksformat()
@@ -55,11 +68,20 @@ class cardclass():
         q = str(q)
         a = str(a)
         self.data = [q,a] 
+    def save(self):
+        jsonvar =  json.loads('{ "data": self.data, "formattype":formattype,}')
+        path =  str(Path().absolute())+ "/"+ self.name
+        try:
+            os.mkdir(path) 
+        except:
+            pass
+        openvar = ''.join(random.choice(string.ascii_uppercase + string.ascii_lowercase + string.digits) for _ in range(8))
+        filename = path+"/"+openvar+".json"
+        o= open(filename,"w")
+        o.write(jsonvar)
+
 
         
-
-
-    
 
 
         
