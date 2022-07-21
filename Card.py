@@ -4,16 +4,8 @@ from pathlib import Path
 import json
 
 class cardclass():
-    def __init__(self,x,y,l,w,color,formattype,data,guivariable):
-        self.x= x
-        self.y = y
-        self.l = l
-        self.w = w
-        self.color = color
-        self.formatType = formattype
-        self.inputdata = data
-        self.data = ""
-        self.FormatSorter()
+    
+        
     def __init__(self,x,y,l,w,color,formattype,data,guivariable,deckname):
         self.x= x
         self.y = y
@@ -67,18 +59,20 @@ class cardclass():
         q,a = self.formatinput()
         q = str(q)
         a = str(a)
+        
         self.data = [q,a] 
     def save(self):
-        jsonvar =  json.loads('{ "data": self.data, "formattype":formattype,}')
+        
+        jsonvar =  {
+        "Data" : self.data,
+        "FormatNum" : self.formatType,}
+        jsonvar = json.dumps(jsonvar, indent = 2)
         path =  str(Path().absolute())+ "/"+ self.name
-        try:
-            os.mkdir(path) 
-        except:
-            pass
         openvar = ''.join(random.choice(string.ascii_uppercase + string.ascii_lowercase + string.digits) for _ in range(8))
         filename = path+"/"+openvar+".json"
         o= open(filename,"w")
         o.write(jsonvar)
+        return openvar+".json"
 
 
         
